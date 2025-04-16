@@ -1,143 +1,10 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "I’m a Master of Science in Business Analytics (MSBA) student at the Rady School of Management, UC San Diego. With hands-on experience in data analytics, financial services, and marketing strategy, I’m passionate about using data to solve real-world problems and tell meaningful stories."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Zewei Chen",
-    "section": "",
-    "text": "Hi! I’m Zewei Chen — welcome to my personal website.\nCurrently pursuing MSBA at UCSD\nPassionate about data science, analytics, and technology\nAlways exploring how data can tell meaningful stories"
-  },
-  {
-    "objectID": "resume/resume.html",
-    "href": "resume/resume.html",
-    "title": "Resume",
-    "section": "",
-    "text": "{{&lt; pdf resume/Resume.pdf width=100% height=800 &gt;}}"
-  },
-  {
-    "objectID": "resume.html",
-    "href": "resume.html",
-    "title": "Resume",
-    "section": "",
-    "text": "Your browser does not support PDFs. &lt;a href=\"resume/Resume.pdf\"&gt;Download the PDF&lt;/a&gt;."
-  },
-  {
-    "objectID": "about.html#hi-im-zewei-chen",
-    "href": "about.html#hi-im-zewei-chen",
-    "title": "About",
-    "section": "",
-    "text": "I’m a Master of Science in Business Analytics (MSBA) student at the Rady School of Management, UC San Diego. With hands-on experience in data analytics, financial services, and marketing strategy, I’m passionate about using data to solve real-world problems and tell meaningful stories."
-  },
-  {
-    "objectID": "about.html#education-skills",
-    "href": "about.html#education-skills",
-    "title": "About",
-    "section": "🎓 Education & Skills",
-    "text": "🎓 Education & Skills\n\nGPA: 3.46 / 4.0\n\nCore Courses: SQL & ETL, Customer Analytics and AI, Fraud Analytics, Business Analytics\n\nTech Stack: Python, SQL, Power BI, R, ETL tools\n\nLanguages: English (fluent), Mandarin Chinese (native)"
-  },
-  {
-    "objectID": "about.html#personal-interests",
-    "href": "about.html#personal-interests",
-    "title": "About",
-    "section": "🏀 Personal Interests",
-    "text": "🏀 Personal Interests\nOutside of academics and data science, I love playing basketball 🏀. It keeps me energized, focused, and reminds me of the value of teamwork — both on the court and in data projects."
-  },
-  {
-    "objectID": "about.html#professional-experience-highlights",
-    "href": "about.html#professional-experience-highlights",
-    "title": "About",
-    "section": "💼 Professional Experience Highlights",
-    "text": "💼 Professional Experience Highlights\n\nIntuit Inc.: Built predictive models for direct mail campaign optimization.\n\nChina Securities: Conducted macroeconomic research and financial modeling.\n\nICBC: Supported cross-border financial operations and reporting.\n\n\nFeel free to explore my resume or connect with me on LinkedIn."
-  },
-  {
     "objectID": "blog.html",
     "href": "blog.html",
     "title": "Blog",
     "section": "",
     "text": "A showcase of my projects and case studies.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCreative Gaming: Propensity-to-Buy Modeling\n\n\n\n\n\nEnd-to-end modeling project on mobile game purchase prediction. Includes EDA, logistic regression, ad experiment, and machine learning comparison. \n\n\n\n\n\nFeb 1, 2025\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "blog/project/index.html",
-    "href": "blog/project/index.html",
-    "title": "Creative Gaming: Propensity-to-Buy Modeling",
-    "section": "",
-    "text": "Creative Gaming’s mobile title Space Pirates introduced an in-app paid campaign called Zalon. Despite an engaged player base, only 5.75% of players organically purchased the campaign. This project aims to:\n\nBuild a predictive model for purchase behavior\nEvaluate the impact of an in-app ad experiment\nCompare modeling approaches: Logistic Regression, Neural Network, and Random Forest"
-  },
-  {
-    "objectID": "blog/project/index.html#project-overview",
-    "href": "blog/project/index.html#project-overview",
-    "title": "Creative Gaming: Propensity-to-Buy Modeling",
-    "section": "",
-    "text": "This project is based on the teaching case Creative Gaming: Space Pirates from Kellogg School of Management and UCSD Rady…\n[（其余内容我前面已经发给你了，不用我重复贴了）]"
-  },
-  {
-    "objectID": "blog/project/index.html#project-background",
-    "href": "blog/project/index.html#project-background",
-    "title": "Creative Gaming: Propensity-to-Buy Modeling",
-    "section": "",
-    "text": "Creative Gaming’s mobile title Space Pirates introduced an in-app paid campaign called Zalon. Despite an engaged player base, only 5.75% of players organically purchased the campaign. This project aims to:\n\nBuild a predictive model for purchase behavior\nEvaluate the impact of an in-app ad experiment\nCompare modeling approaches: Logistic Regression, Neural Network, and Random Forest"
-  },
-  {
-    "objectID": "blog/project/index.html#data-overview",
-    "href": "blog/project/index.html#data-overview",
-    "title": "Creative Gaming: Propensity-to-Buy Modeling",
-    "section": "📁 Data Overview",
-    "text": "📁 Data Overview\nWe used the following datasets:\n\ncg_organic.parquet: 30K users without ad exposure, for training/testing the initial model\ncg_organic_control.parquet: 30K randomly selected users not exposed to ads (control group)\ncg_ad_treatment.parquet: 150K users shown ads, with experimental group indicators\n\nFeatures included player behaviors, network activity, in-app interactions, and device details."
-  },
-  {
-    "objectID": "blog/project/index.html#part-i-exploratory-analysis",
-    "href": "blog/project/index.html#part-i-exploratory-analysis",
-    "title": "Creative Gaming: Propensity-to-Buy Modeling",
-    "section": "🔍 Part I: Exploratory Analysis",
-    "text": "🔍 Part I: Exploratory Analysis\nWe performed basic EDA to understand the dataset and variable quality:\n\nThe organic conversion rate was 5.75%\nHistograms and frequency plots helped identify skewed and categorical features\nSummary stats highlighted key behavioral metrics (e.g., NumGameDays, NumAdsClicked, AcquiredSpaceship)"
-  },
-  {
-    "objectID": "blog/project/index.html#part-ii-propensity-model-logistic-regression",
-    "href": "blog/project/index.html#part-ii-propensity-model-logistic-regression",
-    "title": "Creative Gaming: Propensity-to-Buy Modeling",
-    "section": "🤖 Part II: Propensity Model (Logistic Regression)",
-    "text": "🤖 Part II: Propensity Model (Logistic Regression)\nUsing training == 1, we trained a logistic regression model to predict converted. Top 5 features:\n\nNumGameDays\nTimesCaptain\nNumSpaceHeroBadges\nNumAdsClicked\nPurchasedCoinPackLarge\n\nThe model achieved: - AUC (Train): X.XX - AUC (Test): X.XX\nPredictions (pred_logit) were used for evaluation and targeting."
-  },
-  {
-    "objectID": "blog/project/index.html#part-iii-ad-experiment-evaluation",
-    "href": "blog/project/index.html#part-iii-ad-experiment-evaluation",
-    "title": "Creative Gaming: Propensity-to-Buy Modeling",
-    "section": "📈 Part III: Ad Experiment Evaluation",
-    "text": "📈 Part III: Ad Experiment Evaluation\nWe compared three groups (each 30K gamers):\n\n\n\n\n\n\n\n\n\nGroup\nDescription\nConversion Rate\nProfit Estimate\n\n\n\n\n1\nControl (no ads)\n~5.75%\n$XX\n\n\n2\nRandom ads\nhigher\n$XX\n\n\n3\nModel-selected high scorers\nhighest\n$XX\n\n\n\nGroup 3 showed highest conversion and profitability, validating model-based targeting."
-  },
-  {
-    "objectID": "blog/project/index.html#part-iv-retraining-on-ad-treatment-data",
-    "href": "blog/project/index.html#part-iv-retraining-on-ad-treatment-data",
-    "title": "Creative Gaming: Propensity-to-Buy Modeling",
-    "section": "🧠 Part IV: Retraining on Ad-Treatment Data",
-    "text": "🧠 Part IV: Retraining on Ad-Treatment Data\nWe retrained the model on ad-exposed users (rnd_30k == 1) and predicted on remaining 120K:\n\nThe “ad model” outperformed the original “organic model”\nGains curves and AUC improved noticeably\nProfit targeting top 30K users increased compared to old model"
-  },
-  {
-    "objectID": "blog/project/index.html#part-v-machine-learning-comparisons",
-    "href": "blog/project/index.html#part-v-machine-learning-comparisons",
-    "title": "Creative Gaming: Propensity-to-Buy Modeling",
-    "section": "🌲 Part V: Machine Learning Comparisons",
-    "text": "🌲 Part V: Machine Learning Comparisons\nWe tested neural networks and random forests:\n\n\n\nModel\nAUC (Test)\nProfit (Top 30K)\n\n\n\n\nLogistic (ad)\nX.XX\n$XX\n\n\nNeural Network\nX.XX\n$XX\n\n\nRandom Forest\nX.XX\n$XX\n\n\n\nRandom Forest had the best lift, especially in top decile predictions."
-  },
-  {
-    "objectID": "blog/project/index.html#part-vi-use-of-generative-ai",
-    "href": "blog/project/index.html#part-vi-use-of-generative-ai",
-    "title": "Creative Gaming: Propensity-to-Buy Modeling",
-    "section": "💬 Part VI: Use of Generative AI",
-    "text": "💬 Part VI: Use of Generative AI\nThis project used ChatGPT to assist in:\n\nUnderstanding gains curves and AUC concepts\nRefining feature importance explanations\nDrafting technical writeups and project documentation\nDebugging Python/StatsModels implementation\nExploring grid search ideas for tuning neural nets"
-  },
-  {
-    "objectID": "blog/project/index.html#summary",
-    "href": "blog/project/index.html#summary",
-    "title": "Creative Gaming: Propensity-to-Buy Modeling",
-    "section": "🚀 Summary",
-    "text": "🚀 Summary\nThis case project demonstrates how business analytics can improve digital marketing efficiency via machine learning, experimentation, and targeted campaign design."
   },
   {
     "objectID": "blog/project1/index.html",
@@ -201,5 +68,54 @@
     "title": "Creative Gaming: Propensity-to-Buy Modeling",
     "section": "🧾 Conclusion",
     "text": "🧾 Conclusion\nAds significantly improve conversion and revenue for the Zalon campaign, and targeted ad selection via machine learning yields the highest ROI. Combining experimentation with modeling is key to unlocking profitable, data-driven decisions in mobile gaming."
+  },
+  {
+    "objectID": "resume.html",
+    "href": "resume.html",
+    "title": "Resume",
+    "section": "",
+    "text": "Your browser does not support PDFs. &lt;a href=\"resume/Resume.pdf\"&gt;Download the PDF&lt;/a&gt;."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Zewei Chen",
+    "section": "",
+    "text": "Hi! I’m Zewei Chen — welcome to my personal website.\nCurrently pursuing MSBA at UCSD\nPassionate about data science, analytics, and technology\nAlways exploring how data can tell meaningful stories"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I’m a Master of Science in Business Analytics (MSBA) student at the Rady School of Management, UC San Diego. With hands-on experience in data analytics, financial services, and marketing strategy, I’m passionate about using data to solve real-world problems and tell meaningful stories."
+  },
+  {
+    "objectID": "about.html#hi-im-zewei-chen",
+    "href": "about.html#hi-im-zewei-chen",
+    "title": "About",
+    "section": "",
+    "text": "I’m a Master of Science in Business Analytics (MSBA) student at the Rady School of Management, UC San Diego. With hands-on experience in data analytics, financial services, and marketing strategy, I’m passionate about using data to solve real-world problems and tell meaningful stories."
+  },
+  {
+    "objectID": "about.html#education-skills",
+    "href": "about.html#education-skills",
+    "title": "About",
+    "section": "🎓 Education & Skills",
+    "text": "🎓 Education & Skills\n\nGPA: 3.46 / 4.0\n\nCore Courses: SQL & ETL, Customer Analytics and AI, Fraud Analytics, Business Analytics\n\nTech Stack: Python, SQL, Power BI, R, ETL tools\n\nLanguages: English (fluent), Mandarin Chinese (native)"
+  },
+  {
+    "objectID": "about.html#personal-interests",
+    "href": "about.html#personal-interests",
+    "title": "About",
+    "section": "🏀 Personal Interests",
+    "text": "🏀 Personal Interests\nOutside of academics and data science, I love playing basketball 🏀. It keeps me energized, focused, and reminds me of the value of teamwork — both on the court and in data projects."
+  },
+  {
+    "objectID": "about.html#professional-experience-highlights",
+    "href": "about.html#professional-experience-highlights",
+    "title": "About",
+    "section": "💼 Professional Experience Highlights",
+    "text": "💼 Professional Experience Highlights\n\nIntuit Inc.: Built predictive models for direct mail campaign optimization.\n\nChina Securities: Conducted macroeconomic research and financial modeling.\n\nICBC: Supported cross-border financial operations and reporting.\n\n\nFeel free to explore my resume or connect with me on LinkedIn."
   }
 ]
