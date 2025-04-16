@@ -1,8 +1,10 @@
 project:
   type: website
 
+output-dir: "."
+
 website:
-  title: "quarto_website"
+  title: "Zewei Chen"
   navbar:
     left:
       - href: index.qmd
@@ -16,8 +18,6 @@ website:
 
 format:
   html:
-    theme:
-      - cosmo
-      - brand
+    theme: cosmo
     css: styles.css
     toc: true
