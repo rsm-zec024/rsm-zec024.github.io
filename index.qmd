@@ -1,0 +1,19 @@
+---
+title: "Zewei Chen"
+image: images/WechatIMG354.jpg
+about:
+  template: jolla
+  links:
+    - icon: envelope
+      href: mailto:zewei.chen@example.com
+    - icon: linkedin
+      href: https://www.linkedin.com/in/zeweichen024/
+    - icon: github
+      href: https://github.com/rsm-zec024?tab=repositories/
+---
+
+Hi! I'm Zewei Chen — welcome to my personal website.
+
+Currently pursuing MSBA at UCSD  
+Passionate about data science, analytics, and technology  
+Always exploring how data can tell meaningful stories

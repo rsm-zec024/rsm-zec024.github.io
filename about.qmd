@@ -1,0 +1,35 @@
+---
+title: "About"
+format: html
+---
+
+## 👋 Hi, I'm Zewei Chen
+
+I'm a Master of Science in Business Analytics (MSBA) student at the Rady School of Management, UC San Diego. With hands-on experience in data analytics, financial services, and marketing strategy, I’m passionate about using data to solve real-world problems and tell meaningful stories.
+
+---
+
+## 🎓 Education & Skills
+
+- **GPA:** 3.46 / 4.0  
+- **Core Courses:** SQL & ETL, Customer Analytics and AI, Fraud Analytics, Business Analytics  
+- **Tech Stack:** Python, SQL, Power BI, R, ETL tools  
+- **Languages:** English (fluent), Mandarin Chinese (native)
+
+---
+
+## 🏀 Personal Interests
+
+Outside of academics and data science, I love playing basketball 🏀. It keeps me energized, focused, and reminds me of the value of teamwork — both on the court and in data projects.
+
+---
+
+## 💼 Professional Experience Highlights
+
+- **Intuit Inc.**: Built predictive models for direct mail campaign optimization.  
+- **China Securities**: Conducted macroeconomic research and financial modeling.  
+- **ICBC**: Supported cross-border financial operations and reporting.
+
+---
+
+Feel free to explore my resume or connect with me on [LinkedIn](https://www.linkedin.com/in/zeweichen024).
