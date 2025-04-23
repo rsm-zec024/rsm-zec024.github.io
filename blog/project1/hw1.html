@@ -214,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="data-summary" class="level2">
 <h2 class="anchored" data-anchor-id="data-summary">📊 Data Summary</h2>
-<div id="4256d31b" class="cell" data-execution_count="2">
+<div id="c1c0cdb7" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show shape only</span></span>
@@ -230,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="results-donation-rates-and-ols">📈 Results: Donation Rates and OLS</h2>
 <section id="summary-statistics" class="level3">
 <h3 class="anchored" data-anchor-id="summary-statistics">📋 Summary Statistics</h3>
-<div id="4adf60eb" class="cell" data-execution_count="3">
+<div id="988ae024" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> df.groupby(<span class="st">"treatment"</span>)[[<span class="st">"gave"</span>, <span class="st">"amount"</span>]].mean()</span>
@@ -275,10 +275,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<blockquote class="blockquote">
+<p>This suggests that the presence of a matching offer increases both the probability of donation and the average donation per person.</p>
+</blockquote>
 </section>
 <section id="visualizations" class="level3">
 <h3 class="anchored" data-anchor-id="visualizations">📊 Visualizations</h3>
-<div id="327a7f98" class="cell" data-execution_count="4">
+<div id="8a3d29c3" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
@@ -297,15 +300,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="hw1_files/figure-html/cell-5-output-1.png" width="1142" height="374" class="figure-img"></p>
+<p><img src="HW1_files/figure-html/cell-5-output-1.png" width="1142" height="374" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
+<blockquote class="blockquote">
+<p>The plots show a clear lift in donation rates and average donation amounts when a match is offered, consistent with the treatment’s intended effect.</p>
+</blockquote>
 </section>
 <section id="ols-regression" class="level3">
 <h3 class="anchored" data-anchor-id="ols-regression">🧮 OLS Regression</h3>
-<div id="656a5e1e" class="cell" data-execution_count="5">
+<div id="26946a38" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ratio2"</span>] <span class="op">=</span> df[<span class="st">"ratio"</span>] <span class="op">==</span> <span class="st">"2"</span></span>
@@ -349,7 +355,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>23:44:52</td>
+<td>23:50:46</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>-1.7946e+05</td>
 </tr>
@@ -508,12 +514,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.<br>[2] The smallest eigenvalue is 3.19e-30. This might indicate that there are<br>strong multicollinearity problems or that the design matrix is singular.
 </div>
 </div>
+<blockquote class="blockquote">
+<p>These coefficients confirm that simply offering a match has a positive impact on donation amounts, while increasing the match ratio or cap provides no significant additional effect.</p>
+</blockquote>
 <hr>
 </section>
 </section>
 <section id="price-elasticity" class="level2">
 <h2 class="anchored" data-anchor-id="price-elasticity">💰 Price Elasticity</h2>
-<div id="9737e6ba" class="cell" data-execution_count="6">
+<div id="47beecfa" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>delta_g <span class="op">=</span> (<span class="fl">0.97</span> <span class="op">-</span> <span class="fl">0.81</span>) <span class="op">/</span> <span class="fl">0.81</span></span>
@@ -525,11 +534,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>0.3086419753086418</code></pre>
 </div>
 </div>
+<blockquote class="blockquote">
+<p>The elasticity of approximately –0.31 indicates that giving is somewhat responsive to changes in the effective price, but the response is inelastic.</p>
+</blockquote>
 <hr>
 </section>
 <section id="red-vs-blue-states" class="level2">
 <h2 class="anchored" data-anchor-id="red-vs-blue-states">🌍 Red vs Blue States</h2>
-<div id="60ced57d" class="cell" data-execution_count="7">
+<div id="5bf46e37" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>summary_red <span class="op">=</span> df[df[<span class="st">"red_state"</span>] <span class="op">==</span> <span class="dv">1</span>].groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean()</span>
@@ -547,6 +559,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  Name: amount, dtype: float32)</code></pre>
 </div>
 </div>
+<blockquote class="blockquote">
+<p>This suggests that donors in red states are more influenced by the matching offer than those in blue states, possibly due to differing baseline attitudes toward the organization.</p>
+</blockquote>
 <hr>
 </section>
 <section id="conclusion" class="level2">
@@ -707,7 +722,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/rsm-zec024\.github\.io\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1078,16 +1093,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📋 Summary Statistics</span></span>
 <span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> df.groupby(<span class="st">"treatment"</span>)[[<span class="st">"gave"</span>, <span class="st">"amount"</span>]].mean()</span>
-<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">"amount_per_person"</span>] <span class="op">=</span> df.groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].<span class="bu">sum</span>() <span class="op">/</span> df.groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].count()</span>
-<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>summary</span>
-<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📊 Visualizations</span></span>
-<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> df.groupby(<span class="st">"treatment"</span>)[[<span class="st">"gave"</span>, <span class="st">"amount"</span>]].mean()</span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">"amount_per_person"</span>] <span class="op">=</span> df.groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].<span class="bu">sum</span>() <span class="op">/</span> df.groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].count()</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>summary</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; This suggests that the presence of a matching offer increases both the probability of donation and the average donation per person.</span></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📊 Visualizations</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
 <span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"treatment"</span>)[<span class="st">"gave"</span>].mean().plot(kind<span class="op">=</span><span class="st">"bar"</span>, ax<span class="op">=</span>ax[<span class="dv">0</span>])</span>
@@ -1102,57 +1117,62 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🧮 OLS Regression</span></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; The plots show a clear lift in donation rates and average donation amounts when a match is offered, consistent with the treatment’s intended effect.</span></span>
 <span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ratio2"</span>] <span class="op">=</span> df[<span class="st">"ratio"</span>] <span class="op">==</span> <span class="st">"2"</span></span>
-<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ratio3"</span>] <span class="op">=</span> df[<span class="st">"ratio"</span>] <span class="op">==</span> <span class="st">"3"</span></span>
-<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size25"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$25,000"</span></span>
-<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size50"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$50,000"</span></span>
-<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size100"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$100,000"</span></span>
-<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ask_medium"</span>] <span class="op">=</span> df[<span class="st">"askd2"</span>]</span>
-<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ask_high"</span>] <span class="op">=</span> df[<span class="st">"askd3"</span>]</span>
-<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> smf.ols(<span class="st">"amount ~ is_treated + ratio2 + ratio3 + size25 + size50 + size100 + ask_medium + ask_high"</span>, data<span class="op">=</span>df).fit()</span>
-<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>model.summary()</span>
-<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a><span class="fu">## 💰 Price Elasticity</span></span>
-<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a>delta_g <span class="op">=</span> (<span class="fl">0.97</span> <span class="op">-</span> <span class="fl">0.81</span>) <span class="op">/</span> <span class="fl">0.81</span></span>
-<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>delta_p <span class="op">=</span> (<span class="fl">1.00</span> <span class="op">-</span> <span class="fl">0.36</span>) <span class="op">/</span> <span class="fl">1.00</span></span>
-<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a>elasticity <span class="op">=</span> delta_g <span class="op">/</span> delta_p</span>
-<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>elasticity</span>
-<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🧮 OLS Regression</span></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ratio2"</span>] <span class="op">=</span> df[<span class="st">"ratio"</span>] <span class="op">==</span> <span class="st">"2"</span></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ratio3"</span>] <span class="op">=</span> df[<span class="st">"ratio"</span>] <span class="op">==</span> <span class="st">"3"</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size25"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$25,000"</span></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size50"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$50,000"</span></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size100"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$100,000"</span></span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ask_medium"</span>] <span class="op">=</span> df[<span class="st">"askd2"</span>]</span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ask_high"</span>] <span class="op">=</span> df[<span class="st">"askd3"</span>]</span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> smf.ols(<span class="st">"amount ~ is_treated + ratio2 + ratio3 + size25 + size50 + size100 + ask_medium + ask_high"</span>, data<span class="op">=</span>df).fit()</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a>model.summary()</span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; These coefficients confirm that simply offering a match has a positive impact on donation amounts, while increasing the match ratio or cap provides no significant additional effect.</span></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-99"><a href="#cb10-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-100"><a href="#cb10-100" aria-hidden="true" tabindex="-1"></a><span class="fu">## 💰 Price Elasticity</span></span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a>delta_g <span class="op">=</span> (<span class="fl">0.97</span> <span class="op">-</span> <span class="fl">0.81</span>) <span class="op">/</span> <span class="fl">0.81</span></span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>delta_p <span class="op">=</span> (<span class="fl">1.00</span> <span class="op">-</span> <span class="fl">0.36</span>) <span class="op">/</span> <span class="fl">1.00</span></span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a>elasticity <span class="op">=</span> delta_g <span class="op">/</span> delta_p</span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a>elasticity</span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🌍 Red vs Blue States</span></span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; The elasticity of approximately –0.31 indicates that giving is somewhat responsive to changes in the effective price, but the response is inelastic.</span></span>
 <span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
-<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a>summary_red <span class="op">=</span> df[df[<span class="st">"red_state"</span>] <span class="op">==</span> <span class="dv">1</span>].groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean()</span>
-<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a>summary_blue <span class="op">=</span> df[df[<span class="st">"blue_state"</span>] <span class="op">==</span> <span class="dv">1</span>].groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean()</span>
-<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a>summary_red, summary_blue</span>
-<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🧾 Conclusion</span></span>
-<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a>We replicated key findings from Karlan &amp; List (2007):</span>
-<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Matching offers increase donations (+19% revenue, +22% response rate)</span>
-<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Higher match ratios ($2:$1, $3:$1) don’t increase giving</span>
-<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Price elasticity of giving is modest (~ –0.3)</span>
-<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Red state donors respond more strongly than blue state donors</span>
+<span id="cb10-113"><a href="#cb10-113" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-114"><a href="#cb10-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🌍 Red vs Blue States</span></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a>summary_red <span class="op">=</span> df[df[<span class="st">"red_state"</span>] <span class="op">==</span> <span class="dv">1</span>].groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean()</span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a>summary_blue <span class="op">=</span> df[df[<span class="st">"blue_state"</span>] <span class="op">==</span> <span class="dv">1</span>].groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean()</span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a>summary_red, summary_blue</span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; This suggests that donors in red states are more influenced by the matching offer than those in blue states, possibly due to differing baseline attitudes toward the organization.</span></span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🧾 Conclusion</span></span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a>We replicated key findings from Karlan &amp; List (2007):</span>
 <span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a>Fundraisers should offer a match, but need not make it generous. The existence of a match drives most of the effect.</span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Matching offers increase donations (+19% revenue, +22% response rate)</span>
+<span id="cb10-134"><a href="#cb10-134" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Higher match ratios ($2:$1, $3:$1) don’t increase giving</span>
+<span id="cb10-135"><a href="#cb10-135" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Price elasticity of giving is modest (~ –0.3)</span>
+<span id="cb10-136"><a href="#cb10-136" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Red state donors respond more strongly than blue state donors</span>
+<span id="cb10-137"><a href="#cb10-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-138"><a href="#cb10-138" aria-hidden="true" tabindex="-1"></a>Fundraisers should offer a match, but need not make it generous. The existence of a match drives most of the effect.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
