@@ -9,7 +9,7 @@
 <meta name="author" content="zewei chen">
 <meta name="dcterms.date" content="2025-04-22">
 
-<title>Matching Donations: A/B Testing Replication – Zewei Chen</title>
+<title>📬 Matching Donations: A/B Testing Replication – Zewei Chen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -159,20 +159,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#data-summary" id="toc-data-summary" class="nav-link" data-scroll-target="#data-summary">Data Summary</a></li>
-  <li><a href="#results-donation-rates-and-ols" id="toc-results-donation-rates-and-ols" class="nav-link" data-scroll-target="#results-donation-rates-and-ols">Results: Donation Rates and OLS</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">🧠 Overview</a></li>
+  <li><a href="#data-summary" id="toc-data-summary" class="nav-link" data-scroll-target="#data-summary">📊 Data Summary</a></li>
+  <li><a href="#results-donation-rates-and-ols" id="toc-results-donation-rates-and-ols" class="nav-link" data-scroll-target="#results-donation-rates-and-ols">📈 Results: Donation Rates and OLS</a>
   <ul class="collapse">
-  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary Statistics</a></li>
-  <li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations">Visualizations</a></li>
-  <li><a href="#ols-regression" id="toc-ols-regression" class="nav-link" data-scroll-target="#ols-regression">OLS Regression</a></li>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">📋 Summary Statistics</a></li>
+  <li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations">📊 Visualizations</a></li>
+  <li><a href="#ols-regression" id="toc-ols-regression" class="nav-link" data-scroll-target="#ols-regression">🧮 OLS Regression</a></li>
   </ul></li>
-  <li><a href="#price-elasticity" id="toc-price-elasticity" class="nav-link" data-scroll-target="#price-elasticity">Price Elasticity</a></li>
-  <li><a href="#red-vs-blue-states" id="toc-red-vs-blue-states" class="nav-link" data-scroll-target="#red-vs-blue-states">Red vs Blue States</a>
-  <ul class="collapse">
-  <li><a href="#red-states-vs-blue-states-average-donation" id="toc-red-states-vs-blue-states-average-donation" class="nav-link" data-scroll-target="#red-states-vs-blue-states-average-donation">Red States vs Blue States: Average Donation</a></li>
-  </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#price-elasticity" id="toc-price-elasticity" class="nav-link" data-scroll-target="#price-elasticity">💰 Price Elasticity</a></li>
+  <li><a href="#red-vs-blue-states" id="toc-red-vs-blue-states" class="nav-link" data-scroll-target="#red-vs-blue-states">🌍 Red vs Blue States</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">🧾 Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -181,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Matching Donations: A/B Testing Replication</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">📬 Matching Donations: A/B Testing Replication</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -211,805 +208,36 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<h2 class="anchored" data-anchor-id="overview">🧠 Overview</h2>
 <p>This blog replicates key results from Karlan &amp; List (2007), who tested whether matching donations increase charitable giving. Using direct mail sent to over 50,000 prior donors, they varied match ratios, maximum match amounts, and suggested ask levels. We analyze the data using Python to reproduce their results on donation rates, response patterns, price elasticity, and heterogeneity by political geography.</p>
 <hr>
 </section>
 <section id="data-summary" class="level2">
-<h2 class="anchored" data-anchor-id="data-summary">Data Summary</h2>
-<div id="867c2e72" class="cell" data-execution_count="1">
-<div class="cell-output cell-output-display" data-execution_count="1">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">count</th>
-<th data-quarto-table-cell-role="th">unique</th>
-<th data-quarto-table-cell-role="th">top</th>
-<th data-quarto-table-cell-role="th">freq</th>
-<th data-quarto-table-cell-role="th">mean</th>
-<th data-quarto-table-cell-role="th">std</th>
-<th data-quarto-table-cell-role="th">min</th>
-<th data-quarto-table-cell-role="th">25%</th>
-<th data-quarto-table-cell-role="th">50%</th>
-<th data-quarto-table-cell-role="th">75%</th>
-<th data-quarto-table-cell-role="th">max</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">treatment</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.666813</td>
-<td>0.471357</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">control</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.333187</td>
-<td>0.471357</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">ratio</td>
-<td>50083</td>
-<td>4</td>
-<td>Control</td>
-<td>16687</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">ratio2</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.222311</td>
-<td>0.415803</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">ratio3</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.222211</td>
-<td>0.415736</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">size</td>
-<td>50083</td>
-<td>5</td>
-<td>Control</td>
-<td>16687</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">size25</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.166723</td>
-<td>0.372732</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">size50</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.166623</td>
-<td>0.372643</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">size100</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.166723</td>
-<td>0.372732</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">sizeno</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.166743</td>
-<td>0.37275</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">ask</td>
-<td>50083</td>
-<td>4</td>
-<td>Control</td>
-<td>16687</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">askd1</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.222311</td>
-<td>0.415803</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">askd2</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.222291</td>
-<td>0.41579</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">askd3</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.222211</td>
-<td>0.415736</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">ask1</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>71.501807</td>
-<td>101.728936</td>
-<td>25.0</td>
-<td>35.0</td>
-<td>45.0</td>
-<td>65.0</td>
-<td>1500.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">ask2</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>91.792724</td>
-<td>127.252628</td>
-<td>35.0</td>
-<td>45.0</td>
-<td>60.0</td>
-<td>85.0</td>
-<td>1875.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">ask3</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>111.046263</td>
-<td>151.673562</td>
-<td>50.0</td>
-<td>55.0</td>
-<td>70.0</td>
-<td>100.0</td>
-<td>2250.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">amount</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.915694</td>
-<td>8.709199</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>400.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">gave</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.020646</td>
-<td>0.142197</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">amountchange</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>-52.672016</td>
-<td>1267.238647</td>
-<td>-200412.125</td>
-<td>-50.0</td>
-<td>-30.0</td>
-<td>-25.0</td>
-<td>275.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">hpa</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>59.384975</td>
-<td>71.177307</td>
-<td>0.0</td>
-<td>30.0</td>
-<td>45.0</td>
-<td>60.0</td>
-<td>1000.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">ltmedmra</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.49372</td>
-<td>0.499966</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">freq</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>8.039355</td>
-<td>11.394454</td>
-<td>0.0</td>
-<td>2.0</td>
-<td>4.0</td>
-<td>10.0</td>
-<td>218.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">years</td>
-<td>50082.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>6.09754</td>
-<td>5.503492</td>
-<td>0.0</td>
-<td>2.0</td>
-<td>5.0</td>
-<td>9.0</td>
-<td>95.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">year5</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.508815</td>
-<td>0.499927</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">mrm2</td>
-<td>50082.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>13.007268</td>
-<td>12.081403</td>
-<td>0.0</td>
-<td>4.0</td>
-<td>8.0</td>
-<td>19.0</td>
-<td>168.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">dormant</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.523471</td>
-<td>0.499454</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">female</td>
-<td>48972.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.277669</td>
-<td>0.447854</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">couple</td>
-<td>48935.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.091897</td>
-<td>0.288884</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">state50one</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.000998</td>
-<td>0.031581</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">nonlit</td>
-<td>49631.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>2.473918</td>
-<td>1.961528</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>3.0</td>
-<td>4.0</td>
-<td>6.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">cases</td>
-<td>49631.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>1.499768</td>
-<td>1.15514</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>2.0</td>
-<td>4.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">statecnt</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>5.99882</td>
-<td>5.746324</td>
-<td>0.001995</td>
-<td>1.833234</td>
-<td>3.538799</td>
-<td>9.607021</td>
-<td>17.368841</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">stateresponse</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.020627</td>
-<td>0.005171</td>
-<td>0.0</td>
-<td>0.018163</td>
-<td>0.01971</td>
-<td>0.023048</td>
-<td>0.076923</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">stateresponset</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.021989</td>
-<td>0.006257</td>
-<td>0.0</td>
-<td>0.018493</td>
-<td>0.021697</td>
-<td>0.024703</td>
-<td>0.111111</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">stateresponsec</td>
-<td>50080.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.017717</td>
-<td>0.007516</td>
-<td>0.0</td>
-<td>0.012862</td>
-<td>0.019881</td>
-<td>0.020806</td>
-<td>0.052632</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">stateresponsetminc</td>
-<td>50080.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.004273</td>
-<td>0.009112</td>
-<td>-0.047619</td>
-<td>-0.001388</td>
-<td>0.001779</td>
-<td>0.010545</td>
-<td>0.111111</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">perbush</td>
-<td>50048.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.48794</td>
-<td>0.078735</td>
-<td>0.090909</td>
-<td>0.444444</td>
-<td>0.484848</td>
-<td>0.525253</td>
-<td>0.731959</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">close25</td>
-<td>50048.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.185702</td>
-<td>0.38887</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">red0</td>
-<td>50048.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.404452</td>
-<td>0.490791</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">blue0</td>
-<td>50048.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.595548</td>
-<td>0.490791</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">redcty</td>
-<td>49978.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.510245</td>
-<td>0.4999</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">bluecty</td>
-<td>49978.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.488715</td>
-<td>0.499878</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">pwhite</td>
-<td>48217.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.819599</td>
-<td>0.168561</td>
-<td>0.009418</td>
-<td>0.755845</td>
-<td>0.872797</td>
-<td>0.938827</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">pblack</td>
-<td>48047.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.08671</td>
-<td>0.135868</td>
-<td>0.0</td>
-<td>0.014729</td>
-<td>0.036554</td>
-<td>0.090882</td>
-<td>0.989622</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">page18_39</td>
-<td>48217.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.321694</td>
-<td>0.103039</td>
-<td>0.0</td>
-<td>0.258311</td>
-<td>0.305534</td>
-<td>0.369132</td>
-<td>0.997544</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">ave_hh_sz</td>
-<td>48221.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>2.429012</td>
-<td>0.378115</td>
-<td>0.0</td>
-<td>2.21</td>
-<td>2.44</td>
-<td>2.66</td>
-<td>5.27</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">median_hhincome</td>
-<td>48209.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>54815.700533</td>
-<td>22027.316665</td>
-<td>5000.0</td>
-<td>39181.0</td>
-<td>50673.0</td>
-<td>66005.0</td>
-<td>200001.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">powner</td>
-<td>48214.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.669418</td>
-<td>0.193405</td>
-<td>0.0</td>
-<td>0.560222</td>
-<td>0.712296</td>
-<td>0.816798</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">psch_atlstba</td>
-<td>48215.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.391661</td>
-<td>0.186599</td>
-<td>0.0</td>
-<td>0.235647</td>
-<td>0.373744</td>
-<td>0.530036</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">pop_propurban</td>
-<td>48217.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.871968</td>
-<td>0.258654</td>
-<td>0.0</td>
-<td>0.884929</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">is_treated</td>
-<td>50083.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.666813</td>
-<td>0.471357</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">red_state</td>
-<td>50048.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.404452</td>
-<td>0.490791</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">blue_state</td>
-<td>50048.0</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.595548</td>
-<td>0.490791</td>
-<td>0.0</td>
-<td>0.0</td>
-<td>1.0</td>
-<td>1.0</td>
-<td>1.0</td>
-</tr>
-</tbody>
-</table>
-
-</div>
+<h2 class="anchored" data-anchor-id="data-summary">📊 Data Summary</h2>
+<div id="4256d31b" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show shape only</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>(50083, 54)</code></pre>
 </div>
 </div>
 <hr>
 </section>
 <section id="results-donation-rates-and-ols" class="level2">
-<h2 class="anchored" data-anchor-id="results-donation-rates-and-ols">Results: Donation Rates and OLS</h2>
+<h2 class="anchored" data-anchor-id="results-donation-rates-and-ols">📈 Results: Donation Rates and OLS</h2>
 <section id="summary-statistics" class="level3">
-<h3 class="anchored" data-anchor-id="summary-statistics">Summary Statistics</h3>
-<div id="cfc0e0cb" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="2">
+<h3 class="anchored" data-anchor-id="summary-statistics">📋 Summary Statistics</h3>
+<div id="4adf60eb" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> df.groupby(<span class="st">"treatment"</span>)[[<span class="st">"gave"</span>, <span class="st">"amount"</span>]].mean()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">"amount_per_person"</span>] <span class="op">=</span> df.groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].<span class="bu">sum</span>() <span class="op">/</span> df.groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].count()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
@@ -1049,21 +277,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="visualizations" class="level3">
-<h3 class="anchored" data-anchor-id="visualizations">Visualizations</h3>
-<div id="1e967990" class="cell" data-execution_count="3">
+<h3 class="anchored" data-anchor-id="visualizations">📊 Visualizations</h3>
+<div id="327a7f98" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"treatment"</span>)[<span class="st">"gave"</span>].mean().plot(kind<span class="op">=</span><span class="st">"bar"</span>, ax<span class="op">=</span>ax[<span class="dv">0</span>])</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">"Donation Rate by Treatment"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">"Donation Rate"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean().plot(kind<span class="op">=</span><span class="st">"bar"</span>, ax<span class="op">=</span>ax[<span class="dv">1</span>])</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">"Average Donation by Treatment"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">"Average Donation ($)"</span>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="hw1_files/figure-html/cell-4-output-1.png" width="1142" height="374" class="figure-img"></p>
+<p><img src="hw1_files/figure-html/cell-5-output-1.png" width="1142" height="374" class="figure-img"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
 <section id="ols-regression" class="level3">
-<h3 class="anchored" data-anchor-id="ols-regression">OLS Regression</h3>
-<div id="6924cfe3" class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display" data-execution_count="4">
+<h3 class="anchored" data-anchor-id="ols-regression">🧮 OLS Regression</h3>
+<div id="656a5e1e" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ratio2"</span>] <span class="op">=</span> df[<span class="st">"ratio"</span>] <span class="op">==</span> <span class="st">"2"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ratio3"</span>] <span class="op">=</span> df[<span class="st">"ratio"</span>] <span class="op">==</span> <span class="st">"3"</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size25"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$25,000"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size50"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$50,000"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size100"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$100,000"</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ask_medium"</span>] <span class="op">=</span> df[<span class="st">"askd2"</span>]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ask_high"</span>] <span class="op">=</span> df[<span class="st">"askd3"</span>]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> smf.ols(<span class="st">"amount ~ is_treated + ratio2 + ratio3 + size25 + size50 + size100 + ask_medium + ask_high"</span>, data<span class="op">=</span>df).fit()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>model.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="5">
 <table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>OLS Regression Results</caption>
 <tbody>
@@ -1093,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>23:36:00</td>
+<td>23:44:52</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>-1.7946e+05</td>
 </tr>
@@ -1256,21 +512,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="price-elasticity" class="level2">
-<h2 class="anchored" data-anchor-id="price-elasticity">Price Elasticity</h2>
-<p>We estimate the price elasticity of giving as follows:</p>
-<div id="757c3d41" class="cell" data-execution_count="5">
-<div class="cell-output cell-output-display" data-execution_count="5">
+<h2 class="anchored" data-anchor-id="price-elasticity">💰 Price Elasticity</h2>
+<div id="9737e6ba" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>delta_g <span class="op">=</span> (<span class="fl">0.97</span> <span class="op">-</span> <span class="fl">0.81</span>) <span class="op">/</span> <span class="fl">0.81</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>delta_p <span class="op">=</span> (<span class="fl">1.00</span> <span class="op">-</span> <span class="fl">0.36</span>) <span class="op">/</span> <span class="fl">1.00</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>elasticity <span class="op">=</span> delta_g <span class="op">/</span> delta_p</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>elasticity</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>0.3086419753086418</code></pre>
 </div>
 </div>
 <hr>
 </section>
 <section id="red-vs-blue-states" class="level2">
-<h2 class="anchored" data-anchor-id="red-vs-blue-states">Red vs Blue States</h2>
-<section id="red-states-vs-blue-states-average-donation" class="level3">
-<h3 class="anchored" data-anchor-id="red-states-vs-blue-states-average-donation">Red States vs Blue States: Average Donation</h3>
-<div id="84a88cda" class="cell" data-execution_count="6">
-<div class="cell-output cell-output-display" data-execution_count="6">
+<h2 class="anchored" data-anchor-id="red-vs-blue-states">🌍 Red vs Blue States</h2>
+<div id="60ced57d" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>summary_red <span class="op">=</span> df[df[<span class="st">"red_state"</span>] <span class="op">==</span> <span class="dv">1</span>].groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>summary_blue <span class="op">=</span> df[df[<span class="st">"blue_state"</span>] <span class="op">==</span> <span class="dv">1</span>].groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean()</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>summary_red, summary_blue</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>(treatment
  0    0.687425
  1    1.064124
@@ -1283,9 +549,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <hr>
 </section>
-</section>
 <section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<h2 class="anchored" data-anchor-id="conclusion">🧾 Conclusion</h2>
 <p>We replicated key findings from Karlan &amp; List (2007):</p>
 <ul>
 <li>Matching offers increase donations (+19% revenue, +22% response rate)</li>
@@ -1769,128 +1034,125 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> " Matching Donations: A/B Testing Replication"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "zewei chen"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2025-04-22</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Overview</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>This blog replicates key results from Karlan &amp; List (2007), who tested whether matching donations increase charitable giving. Using direct mail sent to over 50,000 prior donors, they varied match ratios, maximum match amounts, and suggested ask levels. We analyze the data using Python to reproduce their results on donation rates, response patterns, price elasticity, and heterogeneity by political geography.</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Data Summary</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_stata(<span class="st">"karlan_list_2007.dta"</span>)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"is_treated"</span>] <span class="op">=</span> df[<span class="st">"treatment"</span>]</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"red_state"</span>] <span class="op">=</span> df[<span class="st">"red0"</span>]</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"blue_state"</span>] <span class="op">=</span> df[<span class="st">"blue0"</span>]</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>df.shape</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>df.describe(include<span class="op">=</span><span class="st">"all"</span>).T</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Results: Donation Rates and OLS</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="fu">###  Summary Statistics</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> df.groupby(<span class="st">"treatment"</span>)[[<span class="st">"gave"</span>, <span class="st">"amount"</span>]].mean()</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">"amount_per_person"</span>] <span class="op">=</span> df.groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].<span class="bu">sum</span>() <span class="op">/</span> df.groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].count()</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>summary</span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="fu">###  Visualizations</span></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"treatment"</span>)[<span class="st">"gave"</span>].mean().plot(kind<span class="op">=</span><span class="st">"bar"</span>, ax<span class="op">=</span>ax[<span class="dv">0</span>])</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">"Donation Rate by Treatment"</span>)</span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">"Donation Rate"</span>)</span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean().plot(kind<span class="op">=</span><span class="st">"bar"</span>, ax<span class="op">=</span>ax[<span class="dv">1</span>])</span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">"Average Amount by Treatment"</span>)</span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">"Average Donation"</span>)</span>
-<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="fu">###  OLS Regression</span></span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ratio2"</span>] <span class="op">=</span> df[<span class="st">"ratio"</span>] <span class="op">==</span> <span class="st">"2"</span></span>
-<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ratio3"</span>] <span class="op">=</span> df[<span class="st">"ratio"</span>] <span class="op">==</span> <span class="st">"3"</span></span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size25"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$25,000"</span></span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size50"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$50,000"</span></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size100"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$100,000"</span></span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ask_medium"</span>] <span class="op">=</span> df[<span class="st">"askd2"</span>]</span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ask_high"</span>] <span class="op">=</span> df[<span class="st">"askd3"</span>]</span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> smf.ols(<span class="st">"amount ~ is_treated + ratio2 + ratio3 + size25 + size50 + size100 + ask_medium + ask_high"</span>, data<span class="op">=</span>df).fit()</span>
-<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a>model.summary()</span>
-<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Price Elasticity</span></span>
-<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>We estimate the price elasticity of giving as follows:</span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a>delta_g <span class="op">=</span> (<span class="fl">0.97</span> <span class="op">-</span> <span class="fl">0.81</span>) <span class="op">/</span> <span class="fl">0.81</span></span>
-<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a>delta_p <span class="op">=</span> (<span class="fl">1.00</span> <span class="op">-</span> <span class="fl">0.36</span>) <span class="op">/</span> <span class="fl">1.00</span></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>elasticity <span class="op">=</span> delta_g <span class="op">/</span> delta_p</span>
-<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a>elasticity</span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Red vs Blue States</span></span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="fu">### Red States vs Blue States: Average Donation</span></span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>summary_red <span class="op">=</span> df[df[<span class="st">"red_state"</span>] <span class="op">==</span> <span class="dv">1</span>].groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean()</span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>summary_blue <span class="op">=</span> df[df[<span class="st">"blue_state"</span>] <span class="op">==</span> <span class="dv">1</span>].groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean()</span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>summary_red, summary_blue</span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Conclusion</span></span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>We replicated key findings from Karlan &amp; List (2007):</span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Matching offers increase donations (+19% revenue, +22% response rate)</span>
-<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Higher match ratios ($2:$1, $3:$1) don’t increase giving</span>
-<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Price elasticity of giving is modest (~ –0.3)</span>
-<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Red state donors respond more strongly than blue state donors</span>
-<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>Fundraisers should offer a match, but need not make it generous. The existence of a match drives most of the effect.</span>
+<div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "📬 Matching Donations: A/B Testing Replication"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "zewei chen"</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2025-04-22</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🧠 Overview</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>This blog replicates key results from Karlan &amp; List (2007), who tested whether matching donations increase charitable giving. Using direct mail sent to over 50,000 prior donors, they varied match ratios, maximum match amounts, and suggested ask levels. We analyze the data using Python to reproduce their results on donation rates, response patterns, price elasticity, and heterogeneity by political geography.</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📊 Data Summary</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_stata(<span class="st">"karlan_list_2007.dta"</span>)</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"is_treated"</span>] <span class="op">=</span> df[<span class="st">"treatment"</span>]</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"red_state"</span>] <span class="op">=</span> df[<span class="st">"red0"</span>]</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"blue_state"</span>] <span class="op">=</span> df[<span class="st">"blue0"</span>]</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Show shape only</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>df.shape</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📈 Results: Donation Rates and OLS</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📋 Summary Statistics</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>summary <span class="op">=</span> df.groupby(<span class="st">"treatment"</span>)[[<span class="st">"gave"</span>, <span class="st">"amount"</span>]].mean()</span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>summary[<span class="st">"amount_per_person"</span>] <span class="op">=</span> df.groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].<span class="bu">sum</span>() <span class="op">/</span> df.groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].count()</span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>summary</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📊 Visualizations</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"treatment"</span>)[<span class="st">"gave"</span>].mean().plot(kind<span class="op">=</span><span class="st">"bar"</span>, ax<span class="op">=</span>ax[<span class="dv">0</span>])</span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_title(<span class="st">"Donation Rate by Treatment"</span>)</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">"Donation Rate"</span>)</span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean().plot(kind<span class="op">=</span><span class="st">"bar"</span>, ax<span class="op">=</span>ax[<span class="dv">1</span>])</span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_title(<span class="st">"Average Donation by Treatment"</span>)</span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">"Average Donation ($)"</span>)</span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🧮 OLS Regression</span></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ratio2"</span>] <span class="op">=</span> df[<span class="st">"ratio"</span>] <span class="op">==</span> <span class="st">"2"</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ratio3"</span>] <span class="op">=</span> df[<span class="st">"ratio"</span>] <span class="op">==</span> <span class="st">"3"</span></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size25"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$25,000"</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size50"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$50,000"</span></span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"size100"</span>] <span class="op">=</span> df[<span class="st">"size"</span>] <span class="op">==</span> <span class="st">"$100,000"</span></span>
+<span id="cb10-88"><a href="#cb10-88" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ask_medium"</span>] <span class="op">=</span> df[<span class="st">"askd2"</span>]</span>
+<span id="cb10-89"><a href="#cb10-89" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"ask_high"</span>] <span class="op">=</span> df[<span class="st">"askd3"</span>]</span>
+<span id="cb10-90"><a href="#cb10-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-91"><a href="#cb10-91" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> smf.ols(<span class="st">"amount ~ is_treated + ratio2 + ratio3 + size25 + size50 + size100 + ask_medium + ask_high"</span>, data<span class="op">=</span>df).fit()</span>
+<span id="cb10-92"><a href="#cb10-92" aria-hidden="true" tabindex="-1"></a>model.summary()</span>
+<span id="cb10-93"><a href="#cb10-93" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-94"><a href="#cb10-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-95"><a href="#cb10-95" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-96"><a href="#cb10-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-97"><a href="#cb10-97" aria-hidden="true" tabindex="-1"></a><span class="fu">## 💰 Price Elasticity</span></span>
+<span id="cb10-98"><a href="#cb10-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-101"><a href="#cb10-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-102"><a href="#cb10-102" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb10-103"><a href="#cb10-103" aria-hidden="true" tabindex="-1"></a>delta_g <span class="op">=</span> (<span class="fl">0.97</span> <span class="op">-</span> <span class="fl">0.81</span>) <span class="op">/</span> <span class="fl">0.81</span></span>
+<span id="cb10-104"><a href="#cb10-104" aria-hidden="true" tabindex="-1"></a>delta_p <span class="op">=</span> (<span class="fl">1.00</span> <span class="op">-</span> <span class="fl">0.36</span>) <span class="op">/</span> <span class="fl">1.00</span></span>
+<span id="cb10-105"><a href="#cb10-105" aria-hidden="true" tabindex="-1"></a>elasticity <span class="op">=</span> delta_g <span class="op">/</span> delta_p</span>
+<span id="cb10-106"><a href="#cb10-106" aria-hidden="true" tabindex="-1"></a>elasticity</span>
+<span id="cb10-107"><a href="#cb10-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-108"><a href="#cb10-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-109"><a href="#cb10-109" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-110"><a href="#cb10-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-111"><a href="#cb10-111" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🌍 Red vs Blue States</span></span>
+<span id="cb10-112"><a href="#cb10-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-115"><a href="#cb10-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb10-116"><a href="#cb10-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb10-117"><a href="#cb10-117" aria-hidden="true" tabindex="-1"></a>summary_red <span class="op">=</span> df[df[<span class="st">"red_state"</span>] <span class="op">==</span> <span class="dv">1</span>].groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean()</span>
+<span id="cb10-118"><a href="#cb10-118" aria-hidden="true" tabindex="-1"></a>summary_blue <span class="op">=</span> df[df[<span class="st">"blue_state"</span>] <span class="op">==</span> <span class="dv">1</span>].groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean()</span>
+<span id="cb10-119"><a href="#cb10-119" aria-hidden="true" tabindex="-1"></a>summary_red, summary_blue</span>
+<span id="cb10-120"><a href="#cb10-120" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb10-121"><a href="#cb10-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-122"><a href="#cb10-122" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb10-123"><a href="#cb10-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-124"><a href="#cb10-124" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🧾 Conclusion</span></span>
+<span id="cb10-125"><a href="#cb10-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-126"><a href="#cb10-126" aria-hidden="true" tabindex="-1"></a>We replicated key findings from Karlan &amp; List (2007):</span>
+<span id="cb10-127"><a href="#cb10-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-128"><a href="#cb10-128" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Matching offers increase donations (+19% revenue, +22% response rate)</span>
+<span id="cb10-129"><a href="#cb10-129" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Higher match ratios ($2:$1, $3:$1) don’t increase giving</span>
+<span id="cb10-130"><a href="#cb10-130" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Price elasticity of giving is modest (~ –0.3)</span>
+<span id="cb10-131"><a href="#cb10-131" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Red state donors respond more strongly than blue state donors</span>
+<span id="cb10-132"><a href="#cb10-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-133"><a href="#cb10-133" aria-hidden="true" tabindex="-1"></a>Fundraisers should offer a match, but need not make it generous. The existence of a match drives most of the effect.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
