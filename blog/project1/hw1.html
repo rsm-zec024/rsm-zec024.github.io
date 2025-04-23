@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Your Name">
+<meta name="author" content="zewei chen">
 <meta name="dcterms.date" content="2025-04-22">
 
-<title>📬 Matching Donations: A/B Testing Replication – Zewei Chen</title>
+<title>Matching Donations: A/B Testing Replication – Zewei Chen</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -159,20 +159,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">🧠 Overview</a></li>
-  <li><a href="#data-summary" id="toc-data-summary" class="nav-link" data-scroll-target="#data-summary">📊 Data Summary</a></li>
-  <li><a href="#results-donation-rates-and-ols" id="toc-results-donation-rates-and-ols" class="nav-link" data-scroll-target="#results-donation-rates-and-ols">📈 Results: Donation Rates and OLS</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#data-summary" id="toc-data-summary" class="nav-link" data-scroll-target="#data-summary">Data Summary</a></li>
+  <li><a href="#results-donation-rates-and-ols" id="toc-results-donation-rates-and-ols" class="nav-link" data-scroll-target="#results-donation-rates-and-ols">Results: Donation Rates and OLS</a>
   <ul class="collapse">
-  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">🔢 Summary Statistics</a></li>
-  <li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations">📊 Visualizations</a></li>
-  <li><a href="#ols-regression" id="toc-ols-regression" class="nav-link" data-scroll-target="#ols-regression">🧮 OLS Regression</a></li>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary Statistics</a></li>
+  <li><a href="#visualizations" id="toc-visualizations" class="nav-link" data-scroll-target="#visualizations">Visualizations</a></li>
+  <li><a href="#ols-regression" id="toc-ols-regression" class="nav-link" data-scroll-target="#ols-regression">OLS Regression</a></li>
   </ul></li>
-  <li><a href="#price-elasticity" id="toc-price-elasticity" class="nav-link" data-scroll-target="#price-elasticity">💰 Price Elasticity</a></li>
-  <li><a href="#red-vs-blue-states" id="toc-red-vs-blue-states" class="nav-link" data-scroll-target="#red-vs-blue-states">🌍 Red vs Blue States</a>
+  <li><a href="#price-elasticity" id="toc-price-elasticity" class="nav-link" data-scroll-target="#price-elasticity">Price Elasticity</a></li>
+  <li><a href="#red-vs-blue-states" id="toc-red-vs-blue-states" class="nav-link" data-scroll-target="#red-vs-blue-states">Red vs Blue States</a>
   <ul class="collapse">
-  <li><a href="#red-states-vs-blue-states-average-donation" id="toc-red-states-vs-blue-states-average-donation" class="nav-link" data-scroll-target="#red-states-vs-blue-states-average-donation">🟥 Red States vs 🟦 Blue States: Average Donation</a></li>
+  <li><a href="#red-states-vs-blue-states-average-donation" id="toc-red-states-vs-blue-states-average-donation" class="nav-link" data-scroll-target="#red-states-vs-blue-states-average-donation">Red States vs Blue States: Average Donation</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">🧾 Conclusion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
     </div>
@@ -181,7 +181,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">📬 Matching Donations: A/B Testing Replication</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Matching Donations: A/B Testing Replication</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -191,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Your Name </p>
+             <p>zewei chen </p>
           </div>
   </div>
     
@@ -211,13 +211,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">🧠 Overview</h2>
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>This blog replicates key results from Karlan &amp; List (2007), who tested whether matching donations increase charitable giving. Using direct mail sent to over 50,000 prior donors, they varied match ratios, maximum match amounts, and suggested ask levels. We analyze the data using Python to reproduce their results on donation rates, response patterns, price elasticity, and heterogeneity by political geography.</p>
 <hr>
 </section>
 <section id="data-summary" class="level2">
-<h2 class="anchored" data-anchor-id="data-summary">📊 Data Summary</h2>
-<div id="fd9700e4" class="cell" data-execution_count="1">
+<h2 class="anchored" data-anchor-id="data-summary">Data Summary</h2>
+<div id="867c2e72" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
@@ -1005,10 +1005,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 <section id="results-donation-rates-and-ols" class="level2">
-<h2 class="anchored" data-anchor-id="results-donation-rates-and-ols">📈 Results: Donation Rates and OLS</h2>
+<h2 class="anchored" data-anchor-id="results-donation-rates-and-ols">Results: Donation Rates and OLS</h2>
 <section id="summary-statistics" class="level3">
-<h3 class="anchored" data-anchor-id="summary-statistics">🔢 Summary Statistics</h3>
-<div id="f978ba34" class="cell" data-execution_count="2">
+<h3 class="anchored" data-anchor-id="summary-statistics">Summary Statistics</h3>
+<div id="cfc0e0cb" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
@@ -1049,8 +1049,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="visualizations" class="level3">
-<h3 class="anchored" data-anchor-id="visualizations">📊 Visualizations</h3>
-<div id="6313c33e" class="cell" data-execution_count="3">
+<h3 class="anchored" data-anchor-id="visualizations">Visualizations</h3>
+<div id="1e967990" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -1061,8 +1061,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="ols-regression" class="level3">
-<h3 class="anchored" data-anchor-id="ols-regression">🧮 OLS Regression</h3>
-<div id="ee9e0d6d" class="cell" data-execution_count="4">
+<h3 class="anchored" data-anchor-id="ols-regression">OLS Regression</h3>
+<div id="6924cfe3" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display" data-execution_count="4">
 <table class="simpletable caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <caption>OLS Regression Results</caption>
@@ -1093,7 +1093,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>23:29:05</td>
+<td>23:36:00</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>-1.7946e+05</td>
 </tr>
@@ -1256,9 +1256,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="price-elasticity" class="level2">
-<h2 class="anchored" data-anchor-id="price-elasticity">💰 Price Elasticity</h2>
+<h2 class="anchored" data-anchor-id="price-elasticity">Price Elasticity</h2>
 <p>We estimate the price elasticity of giving as follows:</p>
-<div id="f79bff22" class="cell" data-execution_count="5">
+<div id="757c3d41" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>0.3086419753086418</code></pre>
 </div>
@@ -1266,10 +1266,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 </section>
 <section id="red-vs-blue-states" class="level2">
-<h2 class="anchored" data-anchor-id="red-vs-blue-states">🌍 Red vs Blue States</h2>
+<h2 class="anchored" data-anchor-id="red-vs-blue-states">Red vs Blue States</h2>
 <section id="red-states-vs-blue-states-average-donation" class="level3">
-<h3 class="anchored" data-anchor-id="red-states-vs-blue-states-average-donation">🟥 Red States vs 🟦 Blue States: Average Donation</h3>
-<div id="b4d5794c" class="cell" data-execution_count="6">
+<h3 class="anchored" data-anchor-id="red-states-vs-blue-states-average-donation">Red States vs Blue States: Average Donation</h3>
+<div id="84a88cda" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>(treatment
  0    0.687425
@@ -1285,7 +1285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 <section id="conclusion" class="level2">
-<h2 class="anchored" data-anchor-id="conclusion">🧾 Conclusion</h2>
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>We replicated key findings from Karlan &amp; List (2007):</p>
 <ul>
 <li>Matching offers increase donations (+19% revenue, +22% response rate)</li>
@@ -1770,8 +1770,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
 <div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "📬 Matching Donations: A/B Testing Replication"</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Your Name"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> " Matching Donations: A/B Testing Replication"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "zewei chen"</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> 2025-04-22</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
@@ -1780,13 +1780,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🧠 Overview</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Overview</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>This blog replicates key results from Karlan &amp; List (2007), who tested whether matching donations increase charitable giving. Using direct mail sent to over 50,000 prior donors, they varied match ratios, maximum match amounts, and suggested ask levels. We analyze the data using Python to reproduce their results on donation rates, response patterns, price elasticity, and heterogeneity by political geography.</span>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📊 Data Summary</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Data Summary</span></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
@@ -1806,9 +1806,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📈 Results: Donation Rates and OLS</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Results: Donation Rates and OLS</span></span>
 <span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🔢 Summary Statistics</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="fu">###  Summary Statistics</span></span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
@@ -1817,7 +1817,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>summary</span>
 <span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📊 Visualizations</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="fu">###  Visualizations</span></span>
 <span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
@@ -1835,7 +1835,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🧮 OLS Regression</span></span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="fu">###  OLS Regression</span></span>
 <span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
@@ -1853,7 +1853,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="fu">## 💰 Price Elasticity</span></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Price Elasticity</span></span>
 <span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a>We estimate the price elasticity of giving as follows:</span>
 <span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
@@ -1867,9 +1867,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🌍 Red vs Blue States</span></span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Red vs Blue States</span></span>
 <span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="fu">### 🟥 Red States vs 🟦 Blue States: Average Donation</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a><span class="fu">### Red States vs Blue States: Average Donation</span></span>
 <span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
@@ -1881,7 +1881,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🧾 Conclusion</span></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a><span class="fu">##  Conclusion</span></span>
 <span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a>We replicated key findings from Karlan &amp; List (2007):</span>
 <span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a></span>
