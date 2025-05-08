@@ -250,7 +250,7 @@ window.Quarto = {
 </section>
 <section id="data" class="level3">
 <h3 class="anchored" data-anchor-id="data">Data</h3>
-<div id="c053d613" class="cell" data-execution_count="1">
+<div id="3e009474" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -305,7 +305,7 @@ Southwest   245   52</code></pre>
 </section>
 <section id="simple-poisson-mle" class="level3">
 <h3 class="anchored" data-anchor-id="simple-poisson-mle">Simple Poisson MLE</h3>
-<div id="26492580" class="cell" data-execution_count="2">
+<div id="f8d7fb6c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> poisson</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -344,7 +344,7 @@ MLE lambda: 3.684666637191825</code></pre>
 </section>
 <section id="poisson-regression" class="level3">
 <h3 class="anchored" data-anchor-id="poisson-regression">Poisson Regression</h3>
-<div id="fe0bab9d" class="cell" data-execution_count="3">
+<div id="d94b2eea" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> patsy</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -363,7 +363,7 @@ Model Family:                 Poisson   Df Model:                            7
 Link Function:                    Log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:                -3258.1
 Date:                Wed, 07 May 2025   Deviance:                       2143.3
-Time:                        19:50:19   Pearson chi2:                 2.07e+03
+Time:                        19:53:11   Pearson chi2:                 2.07e+03
 No. Iterations:                     5   Pseudo R-squ. (CS):             0.1360
 Covariance Type:            nonrobust                                         
 ==========================================================================================
@@ -400,7 +400,7 @@ iscustomer                 0.2076      0.031      6.719      0.000       0.147  
 </section>
 <section id="effect-of-blueprintys-software" class="level3">
 <h3 class="anchored" data-anchor-id="effect-of-blueprintys-software">Effect of Blueprinty’s Software</h3>
-<div id="d3ea0b71" class="cell" data-execution_count="4">
+<div id="c0fe38be" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X0 <span class="op">=</span> X.copy()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X1 <span class="op">=</span> X.copy()</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X0[<span class="st">"iscustomer"</span>] <span class="op">=</span> <span class="dv">0</span></span>
@@ -432,7 +432,7 @@ iscustomer                 0.2076      0.031      6.719      0.000       0.147  
 </section>
 <section id="data-1" class="level3">
 <h3 class="anchored" data-anchor-id="data-1">Data</h3>
-<div id="9b54972e" class="cell" data-execution_count="5">
+<div id="8504a34f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>airbnb <span class="op">=</span> pd.read_csv(<span class="st">"airbnb.csv"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>airbnb_clean <span class="op">=</span> airbnb[[</span>
@@ -500,7 +500,7 @@ iscustomer                 0.2076      0.031      6.719      0.000       0.147  
 </section>
 <section id="modeling-review-counts-with-poisson-regression" class="level3">
 <h3 class="anchored" data-anchor-id="modeling-review-counts-with-poisson-regression">Modeling Review Counts with Poisson Regression</h3>
-<div id="05773d99" class="cell" data-execution_count="6">
+<div id="87abdb44" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model_airbnb <span class="op">=</span> sm.GLM(y_airbnb, X_airbnb, family<span class="op">=</span>sm.families.Poisson())</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>results_airbnb <span class="op">=</span> model_airbnb.fit()</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(results_airbnb.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -513,7 +513,7 @@ Model Family:                 Poisson   Df Model:                           10
 Link Function:                    Log   Scale:                          1.0000
 Method:                          IRLS   Log-Likelihood:            -5.2418e+05
 Date:                Wed, 07 May 2025   Deviance:                   9.2689e+05
-Time:                        19:50:20   Pearson chi2:                 1.37e+06
+Time:                        19:53:12   Pearson chi2:                 1.37e+06
 No. Iterations:                    10   Pseudo R-squ. (CS):             0.6840
 Covariance Type:            nonrobust                                         
 ================================================================================================
