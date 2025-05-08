@@ -221,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="balance-test" class="level2">
 <h2 class="anchored" data-anchor-id="balance-test">📏 Balance Test</h2>
-<div id="ba94851f" class="cell" data-execution_count="2">
+<div id="684323a1" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Additional balance checks</span></span>
@@ -241,7 +241,7 @@ T-test for freq: t = -0.111, p = 0.912</code></pre>
 <blockquote class="blockquote">
 <p>We include additional balance tests on donation amount (<code>amount</code>), prior giving (<code>gave</code>), highest previous contribution (<code>hpa</code>), and donation frequency (<code>freq</code>). None show significant differences, confirming balance.</p>
 </blockquote>
-<div id="28537cdf" class="cell" data-execution_count="3">
+<div id="0411ca6b" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>stats.ttest_ind(df[df[<span class="st">"is_treated"</span>] <span class="op">==</span> <span class="dv">1</span>][<span class="st">"mrm2"</span>].dropna(),</span>
@@ -251,7 +251,7 @@ T-test for freq: t = -0.111, p = 0.912</code></pre>
 <pre><code>Ttest_indResult(statistic=0.1194921058159193, pvalue=0.9048859731777738)</code></pre>
 </div>
 </div>
-<div id="63ebecd4" class="cell" data-execution_count="4">
+<div id="d966905d" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>balance_model <span class="op">=</span> smf.ols(<span class="st">"mrm2 ~ is_treated"</span>, data<span class="op">=</span>df).fit()</span>
@@ -287,7 +287,7 @@ T-test for freq: t = -0.111, p = 0.912</code></pre>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>19:47:09</td>
+<td>19:50:22</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>-1.9585e+05</td>
 </tr>
@@ -390,7 +390,7 @@ T-test for freq: t = -0.111, p = 0.912</code></pre>
 </section>
 <section id="charitable-contribution-made" class="level2">
 <h2 class="anchored" data-anchor-id="charitable-contribution-made">📈 Charitable Contribution Made</h2>
-<div id="a7b6fae5" class="cell" data-execution_count="5">
+<div id="604a6d79" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Probit regression model</span></span>
@@ -445,7 +445,7 @@ The probit link alias is deprecated. Use Probit instead. The probit link alias w
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>19:47:09</td>
+<td>19:50:22</td>
 <td data-quarto-table-cell-role="th">Pearson chi2:</td>
 <td>5.01e+04</td>
 </tr>
@@ -501,7 +501,7 @@ The probit link alias is deprecated. Use Probit instead. The probit link alias w
 <blockquote class="blockquote">
 <p>The Probit model confirms the direction and significance of the treatment effect, consistent with the linear probability model. Probit is better suited for binary outcomes and yields comparable results.</p>
 </blockquote>
-<div id="4908afe3" class="cell" data-execution_count="6">
+<div id="62c4ed45" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot of response rate</span></span>
@@ -515,7 +515,7 @@ The probit link alias is deprecated. Use Probit instead. The probit link alias w
 </div>
 </div>
 </div>
-<div id="65183692" class="cell" data-execution_count="7">
+<div id="f248600c" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># T-test on 'gave'</span></span>
@@ -525,7 +525,7 @@ The probit link alias is deprecated. Use Probit instead. The probit link alias w
 <pre><code>Ttest_indResult(statistic=3.101361000543946, pvalue=0.0019274025949016988)</code></pre>
 </div>
 </div>
-<div id="97feb2cc" class="cell" data-execution_count="8">
+<div id="f21b0ba9" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear probability model</span></span>
@@ -561,7 +561,7 @@ The probit link alias is deprecated. Use Probit instead. The probit link alias w
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>19:47:09</td>
+<td>19:50:23</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>26630.</td>
 </tr>
@@ -664,7 +664,7 @@ The probit link alias is deprecated. Use Probit instead. The probit link alias w
 </section>
 <section id="differences-between-match-rates" class="level2">
 <h2 class="anchored" data-anchor-id="differences-between-match-rates">🔢 Differences between Match Rates</h2>
-<div id="86ff4e5e" class="cell" data-execution_count="9">
+<div id="d86e361d" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare 1:1 vs 2:1</span></span>
@@ -676,7 +676,7 @@ The probit link alias is deprecated. Use Probit instead. The probit link alias w
 <pre><code>Ttest_indResult(statistic=nan, pvalue=nan)</code></pre>
 </div>
 </div>
-<div id="7381da69" class="cell" data-execution_count="10">
+<div id="cfbba829" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Regression: gave ~ ratio2 + ratio3</span></span>
@@ -720,7 +720,7 @@ divide by zero encountered in scalar divide
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>19:47:09</td>
+<td>19:50:23</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>26625.</td>
 </tr>
@@ -832,7 +832,7 @@ divide by zero encountered in scalar divide
 </section>
 <section id="size-of-charitable-contribution" class="level2">
 <h2 class="anchored" data-anchor-id="size-of-charitable-contribution">💰 Size of Charitable Contribution</h2>
-<div id="1368afd1" class="cell" data-execution_count="11">
+<div id="400cdd30" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Overall effect on amount</span></span>
@@ -868,7 +868,7 @@ divide by zero encountered in scalar divide
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>19:47:09</td>
+<td>19:50:23</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>-1.7946e+05</td>
 </tr>
@@ -964,7 +964,7 @@ divide by zero encountered in scalar divide
 <br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </div>
 </div>
-<div id="a29d8baf" class="cell" data-execution_count="12">
+<div id="8fb4ec6e" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Conditional effect only among donors</span></span>
@@ -1001,7 +1001,7 @@ divide by zero encountered in scalar divide
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">Time:</td>
-<td>19:47:09</td>
+<td>19:50:23</td>
 <td data-quarto-table-cell-role="th">Log-Likelihood:</td>
 <td>-5326.8</td>
 </tr>
@@ -1097,7 +1097,7 @@ divide by zero encountered in scalar divide
 <br><br>Notes:<br>[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 </div>
 </div>
-<div id="bcbb1f3f" class="cell" data-execution_count="13">
+<div id="2f8e2d88" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograms for donors</span></span>
@@ -1126,7 +1126,7 @@ divide by zero encountered in scalar divide
 <p>Across all sample sizes (n = 50, 200, 500, 1000), the distributions of mean differences appear approximately normal and centered near the expected true difference of 0.004. The increasing sharpness of the peak with larger sample sizes illustrates the Central Limit Theorem in action. While donation amounts are slightly higher in treatment, differences are small. The regression among donors suggests the treatment did not meaningfully change contribution size.</p>
 </blockquote>
 <hr>
-<div id="a907ca8d" class="cell" data-execution_count="14">
+<div id="9bafb661" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of donation amounts (gave == 1)</span></span>
@@ -1158,7 +1158,7 @@ divide by zero encountered in scalar divide
 </section>
 <section id="price-elasticity" class="level2">
 <h2 class="anchored" data-anchor-id="price-elasticity">📉 Price Elasticity</h2>
-<div id="ea9a3f3d" class="cell" data-execution_count="15">
+<div id="55b5f653" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>delta_g <span class="op">=</span> (<span class="fl">0.97</span> <span class="op">-</span> <span class="fl">0.81</span>) <span class="op">/</span> <span class="fl">0.81</span></span>
@@ -1177,7 +1177,7 @@ divide by zero encountered in scalar divide
 </section>
 <section id="red-vs-blue-states" class="level2">
 <h2 class="anchored" data-anchor-id="red-vs-blue-states">🌍 Red vs Blue States</h2>
-<div id="08feb79d" class="cell" data-execution_count="16">
+<div id="6cce9cff" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>summary_red <span class="op">=</span> df[df[<span class="st">"red_state"</span>] <span class="op">==</span> <span class="dv">1</span>].groupby(<span class="st">"treatment"</span>)[<span class="st">"amount"</span>].mean()</span>
@@ -1204,7 +1204,7 @@ divide by zero encountered in scalar divide
 <h2 class="anchored" data-anchor-id="simulation-experiment">🎲 Simulation Experiment</h2>
 <section id="law-of-large-numbers" class="level3">
 <h3 class="anchored" data-anchor-id="law-of-large-numbers">🔁 Law of Large Numbers</h3>
-<div id="e41dab76" class="cell" data-execution_count="17">
+<div id="32269eab" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>control <span class="op">=</span> np.random.binomial(<span class="dv">1</span>, <span class="fl">0.018</span>, <span class="dv">10000</span>)</span>
@@ -1220,7 +1220,7 @@ divide by zero encountered in scalar divide
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="HW1_files/figure-html/cell-18-output-1.png" width="590" height="431" class="figure-img"></p>
+<p><img src="HW1_files/figure-html/cell-18-output-1.png" width="599" height="431" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1231,7 +1231,7 @@ divide by zero encountered in scalar divide
 </section>
 <section id="central-limit-theorem-multiple-sizes" class="level3">
 <h3 class="anchored" data-anchor-id="central-limit-theorem-multiple-sizes">📊 Central Limit Theorem (Multiple Sizes)</h3>
-<div id="baa9b1e3" class="cell" data-execution_count="18">
+<div id="d892a2dd" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> [<span class="dv">50</span>, <span class="dv">200</span>, <span class="dv">500</span>, <span class="dv">1000</span>]:</span>
@@ -1250,7 +1250,7 @@ divide by zero encountered in scalar divide
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="HW1_files/figure-html/cell-19-output-1.png" width="593" height="449" class="figure-img"></p>
+<p><img src="HW1_files/figure-html/cell-19-output-1.png" width="600" height="449" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1264,7 +1264,7 @@ divide by zero encountered in scalar divide
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="HW1_files/figure-html/cell-19-output-3.png" width="593" height="449" class="figure-img"></p>
+<p><img src="HW1_files/figure-html/cell-19-output-3.png" width="585" height="449" class="figure-img"></p>
 </figure>
 </div>
 </div>
