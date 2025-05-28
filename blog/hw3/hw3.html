@@ -267,7 +267,7 @@ u_{ij} = (1 \times Netflix_j) + (0.5 \times Prime_j) + (-0.8*Ads_j) - 0.1\times 
 \]</span></p>
 <p>where the variables are binary indicators and <span class="math inline">\(\varepsilon\)</span> is Type 1 Extreme Value (ie, Gumble) distributed.</p>
 <p>The following code provides the simulation of the conjoint data.</p>
-<div id="872ad795" class="cell" data-execution_count="1">
+<div id="c8026c74" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -321,11 +321,9 @@ u_{ij} = (1 \times Netflix_j) + (0.5 \times Prime_j) + (-0.8*Ads_j) - 0.1\times 
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co"># remove values unobservable to the researcher</span></span>
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>conjoint_data <span class="op">=</span> conjoint_data[[<span class="st">"resp"</span>, <span class="st">"task"</span>, <span class="st">"brand"</span>, <span class="st">"ad"</span>, <span class="st">"price"</span>, <span class="st">"choice"</span>]]</span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="co"># clean up (optional in Python, just delete unwanted vars if needed)</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co"># del ...</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Display first few rows for checking</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>conjoint_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Display first few rows for checking</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>conjoint_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
@@ -398,7 +396,7 @@ u_{ij} = (1 \times Netflix_j) + (0.5 \times Prime_j) + (-0.8*Ads_j) - 0.1\times 
 <section id="preparing-the-data-for-estimation" class="level2">
 <h2 class="anchored" data-anchor-id="preparing-the-data-for-estimation">3. Preparing the Data for Estimation</h2>
 <p>The “hard part” of the MNL likelihood function is organizing the data, as we need to keep track of 3 dimensions (consumer <span class="math inline">\(i\)</span>, covariate <span class="math inline">\(k\)</span>, and product <span class="math inline">\(j\)</span>) instead of the typical 2 dimensions for cross-sectional regression models (consumer <span class="math inline">\(i\)</span> and covariate <span class="math inline">\(k\)</span>). The fact that each task for each respondent has the same number of alternatives (3) helps. In addition, we need to convert the categorical variables for brand and ads into binary variables.</p>
-<div id="039f6c65" class="cell" data-execution_count="2">
+<div id="635af646" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 0: Load the conjoint data</span></span>
@@ -532,7 +530,7 @@ Number of groups: 1000</code></pre>
 </section>
 <section id="estimation-via-maximum-likelihood" class="level2">
 <h2 class="anchored" data-anchor-id="estimation-via-maximum-likelihood">4. Estimation via Maximum Likelihood</h2>
-<div id="8d8df992" class="cell" data-execution_count="3">
+<div id="6953685a" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -578,7 +576,7 @@ Price        -0.099      0.006   (-0.112, -0.087)</code></pre>
 <h2 class="anchored" data-anchor-id="estimation-via-bayesian-methods">5. Estimation via Bayesian Methods</h2>
 <section id="priors-and-posterior" class="level3">
 <h3 class="anchored" data-anchor-id="priors-and-posterior">5.1 Priors and Posterior</h3>
-<div id="451ffa5f" class="cell" data-execution_count="4">
+<div id="25bc1938" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Prior: N(0, 5) for the first three coefficients, N(0, 1) for price</span></span>
@@ -592,10 +590,10 @@ Price        -0.099      0.006   (-0.112, -0.087)</code></pre>
 </section>
 <section id="metropolis-hastings-mcmc-sampler" class="level3">
 <h3 class="anchored" data-anchor-id="metropolis-hastings-mcmc-sampler">5.2 Metropolis-Hastings MCMC Sampler</h3>
-<div id="50efca3e" class="cell" data-execution_count="5">
+<div id="085726df" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n_iter <span class="op">=</span> <span class="dv">11000</span>    <span class="co"># total number of iterations</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>burnin <span class="op">=</span> <span class="dv">1000</span>     <span class="co"># discard the first 1000 as burn-in</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n_iter <span class="op">=</span> <span class="dv">11000</span>    </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>burnin <span class="op">=</span> <span class="dv">1000</span>     </span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>beta_init <span class="op">=</span> np.zeros(X_reshaped.shape[<span class="dv">2</span>])</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>chain <span class="op">=</span> [beta_init]</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>accepted <span class="op">=</span> <span class="dv">0</span></span>
@@ -630,7 +628,7 @@ Price        -0.099      0.006   (-0.112, -0.087)</code></pre>
 </section>
 <section id="visualization-trace-plot-and-posterior-histogram" class="level3">
 <h3 class="anchored" data-anchor-id="visualization-trace-plot-and-posterior-histogram">5.3 Visualization: Trace Plot and Posterior Histogram</h3>
-<div id="f8c5de7f" class="cell" data-execution_count="6">
+<div id="dbcf227d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>param_names <span class="op">=</span> [<span class="st">'Netflix'</span>, <span class="st">'Prime'</span>, <span class="st">'Ads'</span>, <span class="st">'Price'</span>]</span>
@@ -668,7 +666,7 @@ Price        -0.099      0.006   (-0.112, -0.087)</code></pre>
 </section>
 <section id="posterior-summary-and-comparison" class="level3">
 <h3 class="anchored" data-anchor-id="posterior-summary-and-comparison">5.4 Posterior Summary and Comparison</h3>
-<div id="07c5f85f" class="cell" data-execution_count="7">
+<div id="54dc384f" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Posterior summary</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>post_mean <span class="op">=</span> chain_burned.mean(axis<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>post_std <span class="op">=</span> chain_burned.std(axis<span class="op">=</span><span class="dv">0</span>)</span>
